@@ -7,6 +7,16 @@ from config import *
 # Log file path
 LOG_FILE = 'reddit_bot.log'
 
+# Monitoring Configuration - Crypto Subreddits
+SUBREDDITS = os.environ.get('SUBREDDITS', 'BASE+binance+atomicwallet+btc+ethereum+ExodusWallet+KrakenSupport+ledger+ledgerwallet+maticnetwork+Phantom+Stellar+SushiSwap+theta_network+TREZOR+trustwalletcommunity+XRP+safePal+CoinBase+CryptoScams+kucoin+solana')
+
+# Keywords to monitor (convert from comma-separated string to list)
+KEYWORDS_STRING = os.environ.get('KEYWORDS', 'help,question,beginner,tutorial,Unable,Error,Help,Successful,Support,Funds,Stuck,Claim,Wallet,Drained,Swap,Purchase,Balance,Deposit,Stake,Unstake')
+KEYWORDS = [k.strip() for k in KEYWORDS_STRING.split(',')]
+
+# Check interval
+CHECK_INTERVAL = int(os.environ.get('CHECK_INTERVAL', '60'))
+
 # Initialize Reddit API
 reddit = praw.Reddit(
     client_id=REDDIT_CLIENT_ID,
